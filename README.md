@@ -153,11 +153,13 @@ HAL
 This visualization represents the flow of data and decisions within the HAL system as a flowchart. The flowchart starts with the sensory layer, which collects data from the environment. The perception layer interprets this data and feeds it to the learning layer, which adapts the system to new situations. The memory layer stores important information for future use, which can be retrieved when needed. The decision layer uses this information to make informed decisions, which can then be executed by the node layer. This cycle continues, with the layers working together to create a powerful and adaptable AI system.
 ```mermaid
 graph LR
-S[Sensory Layer] --> P[Perception Layer]
+I[Input] --> S[Sensory Layer] --> M[Memory Layer]
+S --> P[Perception Layer] --> D[Decision Layer] --> |Actions| O[Output] -->|Remember| M
 P --> L[Learning Layer]
-L --> M[Memory Layer]
-{P L} --> D[Decision Layer]
-D -->|Actions| N[Node Layer]
+D --> L
+M -->|Feedback| S
+M -->|Feedback| L
+P;L --> D
 ```
 ## Conclusion:
 In conclusion, the Hybrid Artificial-Intelligence Layer (HAL) is a powerful and adaptable approach to AI that combines multiple layers to create a sophisticated system. By combining different AI techniques, HAL can be used in a variety of industries to solve complex problems and improve performance. Whether you're exploring space, protecting against cyber threats, or managing a complex industrial system, HAL has the potential to transform the way we work and live.
