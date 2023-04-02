@@ -1,4 +1,4 @@
-# Who or what is HAL
+# Who or What is HAL
 HAL, the Hybrid Artificial-Intelligence Layer, is the future of artificial intelligence. It's a layered approach that combines different AI techniques to create a more complex and adaptable system. HAL's layers work together to gather data from the environment, interpret it, learn from it, and make informed decisions based on that knowledge.
 
 HAL's benefits over traditional AI approaches are clear. By combining different AI techniques, HAL is more powerful, adaptable, and flexible. HAL can be used in a variety of industries, including space exploration, cybersecurity, and industrial control systems.
