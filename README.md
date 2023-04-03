@@ -21,6 +21,9 @@ HAL is a layered approach to AI that combines different types of AI techniques t
 - Node layer: This layer consists of specialized nodes that perform micro-tasks, such as audio processing or image recognition.
 ## [HAL Hybrid AI Layer Demo](https://zacharie410.github.io/HAL-Hybrid-AI-Layer/)
 Eventually if you create too many bad elements HAL will learn to delete the Bad button
+
+## Contact me if you are interested in collaborating on HAL
+
 ## Technical Section: HAL in Cybersecurity
 Cybersecurity is a critical concern in today's digital age, with the increasing risk of cyber attacks and data breaches. HAL, the Hybrid Artificial-Intelligence Layer, offers a layered approach to cybersecurity that combines different AI techniques to create a more powerful and adaptable system.
 
