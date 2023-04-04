@@ -4,6 +4,8 @@ local js = require("js")
 -- Define the HAL object
 local HAL = {}
 
+HAL.avatar = {}
+
 -- Define the layers of HAL
 HAL.sensory_layer = {}
 HAL.perception_layer = {}
@@ -11,6 +13,10 @@ HAL.learning_layer = {}
 HAL.memory_layer = {}
 HAL.decision_layer = {}
 HAL.node_layer = {}
+
+function HAL.set_avatar(avatar)
+    HAL.avatar = avatar
+end
 
 -- Define functions for each layer
 function HAL.sensory_layer.get_dom_data()
@@ -51,6 +57,21 @@ function HAL.memory_layer.store_experience(experience)
     -- Store past experiences for future use
 end
 
+function HAL.memory_layer.store_decision(decision)
+    -- Store past decisions for future use
+    -- Add HAL's thought process to the DOM memory_log
+    local memory_log = js.global.document:getElementById("memory_log")
+    local thought = js.global.document:createElement("p")
+    thought.textContent = "HAL is " .. decision.task .. "ing the DOM because there are " .. decision.data .. " elements."
+
+    -- Remove the first thought if there are already 64 thoughts in the log
+    if memory_log.childNodes.length >= 64 then
+        memory_log:removeChild(memory_log.firstChild)
+    end
+
+    memory_log:appendChild(thought)
+end
+
 function HAL.decision_layer.make_decision(interpreted_data)
     -- Make a decision based on the interpreted data
     -- This layer could use rule-based systems or decision trees to make decisions
@@ -61,24 +82,26 @@ function HAL.decision_layer.make_decision(interpreted_data)
     end
 end
 
-function HAL.node_layer.create_console()
+function HAL.node_layer.create_log()
     -- Create a new console element
-    local console = js.global.document:createElement("div")
-    console.id="console"
-    console.style.position = "fixed"
-    console.style.bottom = "0"
-    console.style.width = "100%"
-    console.style.backgroundColor = "#333"
-    console.style.color = "#fff"
-    console.style.padding = "10px"
-    console.style.boxSizing = "border-box"
-    console.textContent = "HAL's thought process:\n"
+    local memory_log = js.global.document:createElement("div")
+    memory_log.id="memory_log"
+    memory_log.style.position = "fixed"
+    memory_log.style.bottom = "0"
+    memory_log.style.width = "100%"
+    memory_log.style.backgroundColor = "#333"
+    memory_log.style.color = "#fff"
+    memory_log.style.padding = "10px"
+    memory_log.style.boxSizing = "border-box"
+    memory_log.style.display= "none"
+    memory_log.textContent = "HAL's thought process:\n"
+    --HALS memory will be logged here
 
     -- Add the console to the document
-    js.global.document.body:appendChild(console)
+    js.global.document.body:appendChild(memory_log)
 
     -- Return a reference to the console element
-    return console
+    return memory_log
 end
 
 function HAL.node_layer.perform_micro_task(task, data)
@@ -99,18 +122,7 @@ function HAL.node_layer.perform_micro_task(task, data)
             end
         end
     end
-    
-    -- Add HAL's thought process to the DOM console
-    local console = js.global.document:getElementById("console")
-    local thought = js.global.document:createElement("p")
-    thought.textContent = "HAL is " .. task .. "ing the DOM because there are " .. data .. " elements."
 
-    -- Remove the first thought if there are already 8 thoughts in the console
-    if console.childNodes.length >= 8 then
-        console:removeChild(console.firstChild)
-    end
-
-    console:appendChild(thought)
 end
 
 -- Define the HAL object's main function
@@ -127,11 +139,11 @@ function HAL.run()
 
     -- Make a decision using the decision layer
     local decision = HAL.decision_layer.make_decision(interpreted_data)
-
+    HAL.memory_layer.store_decision(decision)
     -- Perform a micro-task based on the decision using the node layer
     HAL.node_layer.perform_micro_task(decision.task, decision.data)
 end
 
-HAL.node_layer.create_console()
+HAL.node_layer.create_log()
 -- Example usage
 js.global:setInterval(HAL.run, 1000) -- Run every second

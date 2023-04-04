@@ -1,4 +1,44 @@
-li {
-    display: inline-block;
-    margin-left: 1rem;
+
+
+.cell {
+    box-sizing: border-box;
+}
+
+.grass {
+    background-color: #2ecc71;
+}
+
+.water {
+    background-color: #3498db;
+}
+
+.mountain {
+    background-color: #7f8c8d;
+}
+
+.wood {
+    border-color: #8e44ad;
+}
+
+.stone {
+    border-color: #f1c40f;
+}
+
+.food {
+    border-color: #e67e22;
+}
+
+.predator {
+    background-color: #c0392b;
+    border-radius: 50%;
+}
+
+.wildlife {
+    background-color: #9b59b6;
+    border-radius: 50%;
+}
+
+
+body {
+    margin: 0px;
 }
